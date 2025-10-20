@@ -41,7 +41,10 @@ const App = () => {
   const taxaPrevidencia = 0.11;
 
   const converterNumero = (valor) => {
-    const n = Number(String(valor).replace(/[^0-9.-]+/g, ''));
+    if (!valor) return 0;
+    // Substitui vírgula por ponto e remove caracteres não numéricos
+    const limpo = String(valor).replace(/\./g, '').replace(',', '.').replace(/[^0-9.-]+/g, '');
+    const n = Number(limpo);
     return Number.isFinite(n) ? n : 0;
   };
 
